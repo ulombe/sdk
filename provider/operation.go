@@ -1,5 +1,5 @@
 package provider
 
 type Operation interface {
-	Script() ([]byte, error)
+	Render() ([]byte, error)
 }
