@@ -1,12 +1,17 @@
 package sdk
 
 type Resource struct {
-	Name string
-	Providers *ProviderList
+	name string
+	provider *Provider
 }
 
-func NewResource(name string) *Resource {
+func NewResource(n string, p provider) *Resource {
     return &Resource{
-        Name: name,
+        name: n,
+				provider: p,
     }
+}
+
+func Provider() *Provider {
+	return provider
 }
