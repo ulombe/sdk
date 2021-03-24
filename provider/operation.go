@@ -1,5 +1,22 @@
 package provider
 
 type Operation interface {
-	Render() ([]byte, error)
+  Renderer
+  Commander
 }
+
+
+type Renderer interface {
+  Render() ([]byte, error)
+}
+
+type Commander interface {
+  Command() string
+}
+
+type Validable interface {
+  Validate() error
+  AddValidator(...Validator)
+}
+
+type Validator func(*Validable) error
