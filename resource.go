@@ -1,17 +1,25 @@
 package sdk
 
+// resource.go
 type Resource struct {
-	name string
-	provider *Provider
+	Attributes map[*Operation]AttributeTypeMap
+	Validators map[*Operation]func(*Resource,*Operation,*Change) error
 }
 
-func NewResource(n string, p provider) *Resource {
-    return &Resource{
-        name: n,
-				provider: p,
-    }
+func (r *Resource) Operations() []string {
+	operations := make([]string, 0)
+	for k, _ := range r.Attributes {
+		operations = append(operations, k.Name())
+	}
+
+	return operations
+
 }
 
-func Provider() *Provider {
-	return provider
+func (r *Resource) Validator(o *Operation, validate func(res *Resource, o *Operation, c *Change) error) {
+	r.Validators[o] = validate
+}
+
+func (r *Resource) Validate(o *Operation, c *Change) error {
+	return r.Validators[o](r, o, c)
 }
