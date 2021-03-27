@@ -1,18 +1,25 @@
 package sdk
 
-// attribute_type.go
+import (
+	"reflect"
+)
+
 type AttributeType struct {
 	required bool
 	name     string
 	value    reflect.Kind
 }
 
-func NewAttributeType(required bool, name string, value reflect.Type) *AttributeType {
+func NewAttributeType(required bool, name string, value reflect.Kind) *AttributeType {
   return &AttributeType{
     required: required,
     name: name,
     value: value,
   }
+}
+
+func (a AttributeType) Name() string {
+	return a.name
 }
 
 func (a AttributeType) Required() bool {
