@@ -2,7 +2,7 @@ package sdk
 
 // change_set.go
 type changeSetItem struct {
-  operation operation
+  operation Operation
   change Change
 }
 
