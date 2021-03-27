@@ -1,10 +1,15 @@
 package sdk
 
+import (
+	"fmt"
+	"errors"
+)
+
 type Change struct {
-	values Attributes
+	values AttributeValueMap
 }
 
-func (c *Change) Get(key string) (attributeValue, error) {
+func (c *Change) Get(key string) (interface{}, error) {
 	if value, ok := c.values[key]; ok {
 		return value, nil
 	}
@@ -12,7 +17,7 @@ func (c *Change) Get(key string) (attributeValue, error) {
 	return nil, errors.New(fmt.Sprintf("%s doesn't exist", key))
 }
 
-func NewChange(attributes Attributes) *Change {
+func NewChange(attributes AttributeValueMap) *Change {
 	newChange := new(Change)
 	newChange.values = attributes
 
