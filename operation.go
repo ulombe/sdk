@@ -1,6 +1,5 @@
 package sdk
 
-// operation.go
 type Operation struct {
 	name        string
 	desiredState       string
