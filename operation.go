@@ -3,14 +3,14 @@ package sdk
 // operation.go
 type Operation struct {
 	name        string
-	state       string
+	desiredState       string
 	description string
 }
 
-func NewOperation(name string, state string) *Operation {
+func NewOperation(name string, desiredState string) *Operation {
 	return &Operation{
 		name:  name,
-		state: state,
+		desiredState: desiredState,
 	}
 }
 
@@ -18,6 +18,6 @@ func (o *Operation) Name() string {
 	return o.name
 }
 
-func (o *Operation) State() strig {
-	return o.state
+func (o *Operation) DesiredState() string {
+	return o.desiredState
 }
